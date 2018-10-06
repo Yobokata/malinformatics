@@ -1,0 +1,24 @@
+
+import xml.etree.ElementTree as ET
+import argparse
+import os
+
+## command line input parsing
+parser = argparse.ArgumentParser()
+parser.add_argument('filename', nargs='+')
+args = parser.parse_args()
+filenames = args.filename
+
+def main() :
+  for filename in filenames :
+    ## check if file exists
+    if not os.path.exists(filename):
+      print ('Path ' + filename + ' does not exist.')
+      continue
+    elif os.path.isdir(filename) :
+      print ('Path ' + filename + ' is not a file')
+      continue
+    ## load xml
+    full = ET.parse(filename)
+    
+main()
